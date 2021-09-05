@@ -200,7 +200,7 @@ def AbsoluteErrorGraph(parent, equation):
         
     axes.set_ylabel(" Absolute Error") # Y axis label is always absolute error
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     
     return [canvas.get_tk_widget(), f]
@@ -223,7 +223,7 @@ def PercentErrorGraph(parent, equation):
         
     axes.set_ylabel(" Percent Error") # Y axis label is always percent error
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -249,7 +249,7 @@ def AbsoluteErrorHistogram(parent, equation):
     axes.set_xlabel('Absolute Error') # X axis data label
     axes.set_ylabel(" Frequency") # Y axis label is frequency
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -275,7 +275,7 @@ def PercentErrorHistogram(parent, equation):
     axes.set_xlabel('Percent Error') # X axis data label
     axes.set_ylabel(" Frequency") # Y axis label is frequency
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -336,7 +336,7 @@ def ModelScatterConfidenceGraph(parent, equation, scatterplotOnlyFlag):
     axes.set_xlabel('X Data') # X axis data label
     axes.set_ylabel('Y Data') # Y axis data label
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -362,16 +362,16 @@ def SurfacePlot(parent, equation):
     Z = equation.CalculateModelPredictions(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
     equation.dataCache = tempcache# restore the original data cache
 
-    axes.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=1, antialiased=True)
+    axes.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=1, antialiased=True, alpha=0.75)
 
-    axes.scatter(x_data, y_data, z_data)
+    axes.scatter(x_data, y_data, z_data, depthshade=False, color='k')
 
     axes.set_title('Surface Plot (click-drag with mouse)') # add a title for surface plot
     axes.set_xlabel('X Data') # X axis data label
     axes.set_ylabel('Y Data') # Y axis data label
     axes.set_zlabel('Z Data') # Z axis data label
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -405,7 +405,7 @@ def ContourPlot(parent, equation):
     CS = matplotlib.pyplot.contour(X, Y, Z, numberOfContourLines, colors='k')
     matplotlib.pyplot.clabel(CS, inline=1, fontsize=10) # labels for contours
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
@@ -420,14 +420,14 @@ def ScatterPlot(parent, equation):
     y_data = equation.dataCache.allDataCacheDictionary['IndependentData'][1]
     z_data = equation.dataCache.allDataCacheDictionary['DependentData']
             
-    axes.scatter(x_data, y_data, z_data)
+    axes.scatter(x_data, y_data, z_data, depthshade=False, color='k')
 
     axes.set_title('Scatter Plot (click-drag with mouse)')
     axes.set_xlabel('X Data')
     axes.set_ylabel('Y Data')
     axes.set_zlabel('Z Data')
 
-    canvas.show()
+    canvas.draw()
     plt.close('all') # clean up after using pyplot or else thaere can be memory and process problems
     return [canvas.get_tk_widget(), f]
 
