@@ -346,7 +346,8 @@ def SurfacePlot(parent, equation):
     canvas = FigureCanvasTkAgg(f, master=parent)
     
     matplotlib.pyplot.grid(True)
-    axes = Axes3D(f)
+    axes = Axes3D(f, auto_add_to_figure=False)
+    f.add_axes(axes)
     x_data = equation.dataCache.allDataCacheDictionary['IndependentData'][0]
     y_data = equation.dataCache.allDataCacheDictionary['IndependentData'][1]
     z_data = equation.dataCache.allDataCacheDictionary['DependentData']
@@ -415,7 +416,8 @@ def ScatterPlot(parent, equation):
     canvas = FigureCanvasTkAgg(f, master=parent)
     
     matplotlib.pyplot.grid(True)
-    axes = Axes3D(f)
+    axes = Axes3D(f, auto_add_to_figure=False)
+    f.add_axes(axes)
     x_data = equation.dataCache.allDataCacheDictionary['IndependentData'][0]
     y_data = equation.dataCache.allDataCacheDictionary['IndependentData'][1]
     z_data = equation.dataCache.allDataCacheDictionary['DependentData']
